@@ -6,9 +6,9 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import org.jetbrains.anko.*
-import org.jetbrains.anko.custom.async
 import yidinghe.com.android.kotlin.R
-import yidinghe.com.android.kotlin.data.Request
+import yidinghe.com.android.kotlin.domain.command.RequestForecastCommand
+import yidinghe.com.android.kotlin.domain.model.ForecastList
 import yidinghe.com.android.kotlin.ui.adapters.ForecastListAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
     )
 
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,18 +32,17 @@ class MainActivity : AppCompatActivity() {
 
         val forecastRecyclerView: RecyclerView = find(R.id.forecast_RecyclerView)
         forecastRecyclerView.layoutManager = LinearLayoutManager(this)
-        forecastRecyclerView.adapter = ForecastListAdapter(items)
-
-        val url = "http://api.openweathermap.org/data/2.5/forecast/daily?" +
-                "APPID=89d26475e5acaf51845ce3a0d4eb022b&q=94043&mode=json&units=metric&cnt=7"
 
         doAsync {
             Log.d(javaClass.simpleName, "start doAsync")
-            Request(url).run()
+            val result: ForecastList = RequestForecastCommand("94043").execute()
             Log.d(javaClass.simpleName, "start doAsync, run")
+            Log.d(javaClass.simpleName, "result:" + result)
+            
             uiThread {
                 Log.d(javaClass.simpleName, "start doAsync, Request performed")
                 longToast("Request performed")
+                forecastRecyclerView.adapter = ForecastListAdapter(result)
             }
         }
 
