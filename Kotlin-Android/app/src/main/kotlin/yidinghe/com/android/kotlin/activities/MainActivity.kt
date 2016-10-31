@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import org.jetbrains.anko.find
+import org.jetbrains.anko.longToast
 import org.jetbrains.anko.toast
 import yidinghe.com.android.kotlin.R
 import yidinghe.com.android.kotlin.adapters.ForecastListAdapter
@@ -26,9 +28,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val forecastRecyclerView = findViewById(R.id.forecast_RecyclerView) as RecyclerView
+        toast(R.string.app_name)
+
+        val forecastRecyclerView: RecyclerView = find(R.id.forecast_RecyclerView)
         forecastRecyclerView.layoutManager = LinearLayoutManager(this)
         forecastRecyclerView.adapter = ForecastListAdapter(items)
+
+        longToast(R.string.hello_world)
+
     }
 
 }
