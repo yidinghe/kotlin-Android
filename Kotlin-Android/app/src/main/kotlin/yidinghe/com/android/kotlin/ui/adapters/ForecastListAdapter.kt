@@ -1,4 +1,4 @@
-package yidinghe.com.android.kotlin.adapters
+package yidinghe.com.android.kotlin.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.Adapter
