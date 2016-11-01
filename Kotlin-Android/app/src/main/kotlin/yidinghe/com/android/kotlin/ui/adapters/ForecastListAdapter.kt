@@ -13,7 +13,7 @@ import yidinghe.com.android.kotlin.domain.model.ForecastList
 class ForecastListAdapter(val weekForecastList: ForecastList) : Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
-        with(weekForecastList.dailyForecast[position]) {
+        with(weekForecastList[position]) {
             holder?.textView?.text = "$date - $description - $high/$low"
         }
     }
@@ -22,7 +22,7 @@ class ForecastListAdapter(val weekForecastList: ForecastList) : Adapter<Forecast
         return ViewHolder(TextView(parent?.context))
     }
 
-    override fun getItemCount(): Int = weekForecastList.dailyForecast.size
+    override fun getItemCount(): Int = weekForecastList.size()
 
     class ViewHolder(val textView: TextView) : RecyclerView.ViewHolder(textView)
 }
