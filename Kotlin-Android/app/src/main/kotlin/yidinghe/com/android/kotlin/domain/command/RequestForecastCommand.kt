@@ -8,10 +8,10 @@ import yidinghe.com.android.kotlin.domain.model.ForecastList
  * Created by yiding on 10/31/2016.
  */
 
-class RequestForecastCommand(val zipCode: String) : Command<ForecastList> {
+class RequestForecastCommand(val cityId: String) : Command<ForecastList> {
 
     override fun execute(): ForecastList {
-        val forecastRequest = ForecastRequest(zipCode)
+        val forecastRequest = ForecastRequest(cityId)
         return ForecastDataMapper().convertFromDataModel(forecastRequest.execute())
     }
 
