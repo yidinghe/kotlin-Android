@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
 
                 supportLoliop {
                     Log.d(javaClass.simpleName, "supportLoliop:" + Build.VERSION.SDK_INT)
-                    App.instance()
+                    App.instance
                 }
 
             }
