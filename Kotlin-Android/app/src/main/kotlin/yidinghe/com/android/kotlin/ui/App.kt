@@ -10,7 +10,8 @@ import yidinghe.com.android.kotlin.ui.utils.DelegatesExt
 class App : Application() {
 
     companion object {
-       var instance: App by DelegatesExt.notNullSingleValue<App>()
+       lateinit var instance: App
+            private set
     }
 
     override fun onCreate() {
