@@ -18,7 +18,7 @@ import yidinghe.com.android.kotlin.ui.utils.ctx
  * Created by yiding on 10/31/2016.
  */
 
-class ForecastListAdapter(val weekForecastList: ForecastList, val itemClick: OnItemClickListener) : Adapter<ForecastListAdapter.ViewHolder>() {
+class ForecastListAdapter(val weekForecastList: ForecastList, val itemClick: (Forecast) -> Unit ) : Adapter<ForecastListAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder?, position: Int) {
         holder?.bindForecast(weekForecastList[position])
@@ -31,7 +31,7 @@ class ForecastListAdapter(val weekForecastList: ForecastList, val itemClick: OnI
 
     override fun getItemCount(): Int = weekForecastList.size()
 
-    class ViewHolder(view: View, val itemClick: OnItemClickListener) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View, val itemClick: (Forecast) -> Unit ) : RecyclerView.ViewHolder(view) {
         private val iconView: ImageView
         private val dateView: TextView
         private val descriptionView: TextView
@@ -61,7 +61,4 @@ class ForecastListAdapter(val weekForecastList: ForecastList, val itemClick: OnI
 
     }
 
-    interface OnItemClickListener {
-        operator fun invoke(forecast: Forecast)
-    }
 }

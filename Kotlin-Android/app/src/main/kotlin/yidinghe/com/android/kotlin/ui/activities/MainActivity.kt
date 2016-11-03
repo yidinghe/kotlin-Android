@@ -1,5 +1,6 @@
 package yidinghe.com.android.kotlin.ui.activities
 
+import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import yidinghe.com.android.kotlin.domain.command.RequestForecastCommand
 import yidinghe.com.android.kotlin.domain.model.Forecast
 import yidinghe.com.android.kotlin.domain.model.ForecastList
 import yidinghe.com.android.kotlin.ui.adapters.ForecastListAdapter
+import yidinghe.com.android.kotlin.util.supportLoliop
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,12 +34,14 @@ class MainActivity : AppCompatActivity() {
             uiThread {
                 Log.d(javaClass.simpleName, "start doAsync, Request performed")
                 longToast("Request performed")
-                forecastRecyclerView.adapter = ForecastListAdapter(result, object : ForecastListAdapter.OnItemClickListener {
-                    override fun invoke(forecast: Forecast) {
-                        toast(forecast.date)
-                    }
+                forecastRecyclerView.adapter = ForecastListAdapter(result) {toast(it.date)}
+                // OR
+                //forecastRecyclerView.adapter = ForecastListAdapter(result, {forecast -> toast(forecast.date)})
 
-                })
+                supportLoliop {
+                    Log.d(javaClass.simpleName, "supportLoliop:" + Build.VERSION.SDK_INT)
+                }
+
             }
         }
 
