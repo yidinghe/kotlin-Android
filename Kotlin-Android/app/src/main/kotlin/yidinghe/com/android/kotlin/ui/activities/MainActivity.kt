@@ -29,14 +29,14 @@ class MainActivity : AppCompatActivity() {
 
         doAsync {
             Log.d(javaClass.simpleName, "start doAsync")
-            val result: ForecastList = RequestForecastCommand("4944994").execute()
+            val result: ForecastList = RequestForecastCommand(4944994).execute()
             Log.d(javaClass.simpleName, "start doAsync, run")
             Log.d(javaClass.simpleName, "result:" + result)
 
             uiThread {
                 Log.d(javaClass.simpleName, "start doAsync, Request performed")
                 longToast("Request performed")
-                forecast_RecyclerView.adapter = ForecastListAdapter(result) { toast(it.date) }
+                forecast_RecyclerView.adapter = ForecastListAdapter(result) { toast(it.description) }
                 // OR
                 //forecastRecyclerView.adapter = ForecastListAdapter(result, {forecast -> toast(forecast.date)})
 

@@ -1,7 +1,7 @@
 package yidinghe.com.android.kotlin.ui
 
 import android.app.Application
-import yidinghe.com.android.kotlin.ui.utils.DelegatesExt
+import yidinghe.com.android.kotlin.extensions.DelegatesExt
 
 /**
  * Created by yidinghe on 11/3/16.

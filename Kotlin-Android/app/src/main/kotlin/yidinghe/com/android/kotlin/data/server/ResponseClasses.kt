@@ -1,4 +1,4 @@
-package yidinghe.com.android.kotlin.data
+package yidinghe.com.android.kotlin.data.server
 
 /**
  * Created by yiding on 10/31/2016.

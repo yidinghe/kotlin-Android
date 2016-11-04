@@ -12,8 +12,10 @@ import org.jetbrains.anko.find
 import yidinghe.com.android.kotlin.R
 import yidinghe.com.android.kotlin.domain.model.Forecast
 import yidinghe.com.android.kotlin.domain.model.ForecastList
-import yidinghe.com.android.kotlin.ui.utils.ctx
+import yidinghe.com.android.kotlin.extensions.ctx
 import kotlinx.android.synthetic.main.item_forecast.view.*
+import java.text.DateFormat
+import java.util.*
 
 /**
  * Created by yiding on 10/31/2016.
@@ -52,13 +54,19 @@ class ForecastListAdapter(val weekForecastList: ForecastList, val itemClick: (Fo
             with(forecast) {
                 //View.ctx: Defined at ViewExtensions.kt
                 Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
-                itemView.date.text = date
+                itemView.date.text = convertDate(date)
                 itemView.description.text = description
                 itemView.maxTemperature.text = "${high.toString()}º"
                 itemView.minTemperature.text = "${low.toString()}º"
                 itemView.setOnClickListener { itemClick(this) }
             }
         }
+
+        private fun convertDate(date: Long): String {
+            val df = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
+            return df.format(date)
+        }
+
 
     }
 

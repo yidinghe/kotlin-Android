@@ -1,4 +1,4 @@
-package yidinghe.com.android.kotlin.ui.utils
+package yidinghe.com.android.kotlin.extensions
 
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
