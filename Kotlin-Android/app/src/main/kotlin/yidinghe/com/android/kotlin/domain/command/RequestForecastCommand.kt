@@ -1,7 +1,7 @@
 package yidinghe.com.android.kotlin.domain.command
 
 import yidinghe.com.android.kotlin.data.server.ForecastRequest
-import yidinghe.com.android.kotlin.domain.mapper.ForecastDataMapper
+import yidinghe.com.android.kotlin.data.server.ServerDataMapper
 import yidinghe.com.android.kotlin.domain.model.ForecastList
 
 /**
@@ -12,7 +12,7 @@ class RequestForecastCommand(private val cityId: Long) : Command<ForecastList> {
 
     override fun execute(): ForecastList {
         val forecastRequest = ForecastRequest(cityId)
-        return ForecastDataMapper().convertFromDataModel(cityId, forecastRequest.execute())
+        return ServerDataMapper().convertResultToDomain(cityId, forecastRequest.execute())
     }
 
 }
